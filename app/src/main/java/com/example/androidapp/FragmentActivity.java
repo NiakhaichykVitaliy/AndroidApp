@@ -2,7 +2,6 @@ package com.example.androidapp;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -45,8 +44,9 @@ public class FragmentActivity extends AppCompatActivity {
 
     private void loadFragment(Fragment fragment) {
         FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.replace(R.id.frame_layout, fragment);
-        fragmentTransaction.commit();
+        fm.beginTransaction()
+                .replace(R.id.frame_layout, fragment)
+                .commit();
+
     }
 }

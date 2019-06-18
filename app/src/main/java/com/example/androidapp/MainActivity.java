@@ -7,15 +7,15 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button OpenFragmentsActivityButton;
+    private Button openFragmentsActivityButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        OpenFragmentsActivityButton = findViewById(R.id.button);
-        OpenFragmentsActivityButton.setOnClickListener(new View.OnClickListener() {
+        openFragmentsActivityButton = findViewById(R.id.button);
+        openFragmentsActivityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openFragmentsActivity();
