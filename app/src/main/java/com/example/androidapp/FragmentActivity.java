@@ -1,8 +1,8 @@
 package com.example.androidapp;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -12,29 +12,30 @@ import android.widget.Button;
 
 public class FragmentActivity extends AppCompatActivity {
 
-    private Button firstFragment, secondFragment;
-
     public static void openActivity(Context context) {
         Intent intent = new Intent(context, FragmentActivity.class);
         context.startActivity(intent);
     }
+
+    private Button firstFragmentButton;
+    private Button secondFragmentButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragment);
 
-        firstFragment = findViewById(R.id.first_fragment);
-        secondFragment = findViewById(R.id.second_fragment);
+        firstFragmentButton = findViewById(R.id.first_fragment_button);
+        secondFragmentButton = findViewById(R.id.second_fragment_button);
 
-        firstFragment.setOnClickListener(new View.OnClickListener() {
+        firstFragmentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 loadFragment(new FirstFragment());
             }
         });
 
-        secondFragment.setOnClickListener(new View.OnClickListener() {
+        secondFragmentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 loadFragment(new SecondFragment());
@@ -43,7 +44,7 @@ public class FragmentActivity extends AppCompatActivity {
     }
 
     private void loadFragment(Fragment fragment) {
-        FragmentManager fm = getFragmentManager();
+        FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout, fragment);
         fragmentTransaction.commit();

@@ -5,19 +5,19 @@
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/first_fragment"
+        android:id="@+id/first_fragment_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorGold"
-        android:text="First  Fragment"
+        android:text="@string/fist_fragment"
         android:textColor="@color/colorPrimary" />
 
     <Button
-        android:id="@+id/second_fragment"
+        android:id="@+id/second_fragment_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorOrange"
-        android:text="Second  Fragment"
+        android:text="@string/second_fragment"
         android:textColor="@color/colorWhite" />
 
     <FrameLayout
