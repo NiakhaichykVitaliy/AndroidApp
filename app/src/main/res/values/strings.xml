@@ -6,6 +6,7 @@
     <string name="first">First</string>
     <string name="second">Second</string>
     <string name="open_fragments_activity">Open Fragments Activity</string>
+    <string name="open_view_pager_activity">Open View Pager Activity</string>
     <string name="fist_fragment">First  Fragment</string>
     <string name="second_fragment">Second  Fragment</string>
 </resources>

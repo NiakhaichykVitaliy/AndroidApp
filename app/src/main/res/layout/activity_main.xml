@@ -6,10 +6,17 @@
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/fragments_activity_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorGold"
         android:text="@string/open_fragments_activity" />
+
+    <Button
+        android:id="@+id/view_pager_activity_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:text="@string/open_view_pager_activity"/>
 
 </LinearLayout>

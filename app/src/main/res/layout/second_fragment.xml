@@ -3,11 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorOrange"
     tools:context=".SecondFragment">
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/second" />
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/second"
+        android:textColor="@color/colorWhite"/>
 
 </FrameLayout>
