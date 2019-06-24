@@ -12,8 +12,4 @@
     <string name="first">First</string>
     <string name="second">Second</string>
 
-    <string name="text_home">Home</string>
-    <string name="text_favorites">Favorites</string>
-    <string name="text_settings">Settings</string>
-
 </resources>

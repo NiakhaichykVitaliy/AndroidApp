@@ -9,9 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SettingsFragment"></activity>
-        <activity android:name=".FavoritesFragment" />
-        <activity android:name=".HomeFragment" />
         <activity android:name=".ViewPagerActivity" />
         <activity android:name=".FragmentActivity" />
         <activity android:name=".MainActivity">

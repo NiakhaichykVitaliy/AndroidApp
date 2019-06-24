@@ -5,6 +5,8 @@ import android.support.design.widget.BottomNavigationView;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -22,28 +24,31 @@ public class FragmentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_fragment);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnNavigationItemSelectedListener(navigationListner);
+        bottomNavigationView.setOnNavigationItemSelectedListener(navigationListener);
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener navigationListner =
+    private BottomNavigationView.OnNavigationItemSelectedListener navigationListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     Fragment selectedFragment = null;
                     switch (item.getItemId()) {
-                        case R.id.action_home:
-                            selectedFragment = new HomeFragment();
+                        case R.id.action_first:
+                            selectedFragment = new FirstFragment();
                             break;
-                        case R.id.action_favorite:
-                            selectedFragment = new FavoritesFragment();
-                            break;
-                        case R.id.action_settings:
-                            selectedFragment = new SettingsFragment();
+                        case R.id.action_second:
+                            selectedFragment = new SecondFragment();
                             break;
                     }
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment,
-                            selectedFragment).commit();
+                    loadFragment(selectedFragment);
                     return true;
                 }
             };
+
+    private void loadFragment(Fragment fragment) {
+        FragmentManager fm = getSupportFragmentManager();
+        fm.beginTransaction()
+                .replace(R.id.fragment, fragment)
+                .commit();
+    }
 }
