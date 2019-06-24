@@ -1,13 +1,14 @@
 package com.example.androidapp;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.widget.TextView;
 
 public class FragmentActivity extends AppCompatActivity {
 
@@ -16,37 +17,43 @@ public class FragmentActivity extends AppCompatActivity {
         context.startActivity(intent);
     }
 
-    private Button firstFragmentButton;
-    private Button secondFragmentButton;
+    private TextView textHome;
+    private TextView textFavorites;
+    private TextView textSettings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragment);
 
-        firstFragmentButton = findViewById(R.id.first_fragment_button);
-        secondFragmentButton = findViewById(R.id.second_fragment_button);
+        textHome = findViewById(R.id.text_home);
+        textFavorites = findViewById(R.id.text_favorites);
+        textSettings = findViewById(R.id.text_settings);
 
-        firstFragmentButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadFragment(new FirstFragment());
-            }
-        });
-
-        secondFragmentButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadFragment(new SecondFragment());
-            }
-        });
-    }
-
-    private void loadFragment(Fragment fragment) {
-        FragmentManager fm = getSupportFragmentManager();
-        fm.beginTransaction()
-                .replace(R.id.frame_layout, fragment)
-                .commit();
-
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(
+                new BottomNavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.action_home:
+                                textHome.setVisibility(View.VISIBLE);
+                                textFavorites.setVisibility(View.GONE);
+                                textSettings.setVisibility(View.GONE);
+                                break;
+                            case R.id.action_favorite:
+                                textHome.setVisibility(View.GONE);
+                                textFavorites.setVisibility(View.VISIBLE);
+                                textSettings.setVisibility(View.GONE);
+                                break;
+                            case R.id.action_settings:
+                                textHome.setVisibility(View.GONE);
+                                textFavorites.setVisibility(View.GONE);
+                                textSettings.setVisibility(View.VISIBLE);
+                                break;
+                        }
+                        return false;
+                    }
+                });
     }
 }
