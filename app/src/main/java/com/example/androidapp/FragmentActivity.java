@@ -23,6 +23,9 @@ public class FragmentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragment);
 
+        getSupportActionBar().setTitle("FragmentActivity");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationListener);
     }
