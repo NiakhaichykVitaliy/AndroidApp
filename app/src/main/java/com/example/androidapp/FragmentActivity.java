@@ -31,17 +31,15 @@ public class FragmentActivity extends AppCompatActivity {
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    Fragment selectedFragment = null;
                     switch (item.getItemId()) {
                         case R.id.action_first:
-                            selectedFragment = new FirstFragment();
+                            loadFragment(new FirstFragment());
                             break;
                         case R.id.action_second:
-                            selectedFragment = new SecondFragment();
+                            loadFragment(new SecondFragment());
                             break;
                     }
-                    loadFragment(selectedFragment);
-                    return true;
+                    return false;
                 }
             };
 
