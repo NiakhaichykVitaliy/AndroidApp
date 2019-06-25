@@ -24,5 +24,9 @@ public class ViewPagerActivity extends AppCompatActivity {
         pager = findViewById(R.id.view_pager);
         pagerAdapter = new PagerAdapter(getSupportFragmentManager());
         pager.setAdapter(pagerAdapter);
+
+        getSupportActionBar().setTitle(R.string.view_pager_activity_title);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }
