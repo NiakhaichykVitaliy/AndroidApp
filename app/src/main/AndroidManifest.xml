@@ -9,8 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViewPagerActivity" />
-        <activity android:name=".FragmentActivity" />
+        <activity
+            android:name=".ViewPagerActivity"
+            android:parentActivityName=".MainActivity"
+            android:label="@string/view_pager_activity_title"/>
+        <activity android:name=".FragmentActivity"
+            android:label="@string/fragments_activity_title"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
