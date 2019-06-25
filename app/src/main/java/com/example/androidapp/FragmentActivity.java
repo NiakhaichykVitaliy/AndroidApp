@@ -8,10 +8,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 public class FragmentActivity extends AppCompatActivity {
 
@@ -67,7 +65,7 @@ public class FragmentActivity extends AppCompatActivity {
     private void loadFragment(Fragment fragment) {
         FragmentManager fm = getSupportFragmentManager();
         fm.beginTransaction()
-                .replace(R.id.fragment, fragment)
+                .replace(R.id.frame_layout, fragment)
                 .commit();
     }
 }
