@@ -14,7 +14,7 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new FirstFragment();
+                return new MoviesFragment();
             case 1:
                 return new SecondFragment();
             default:
