@@ -10,7 +10,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toolbar;
 
 public class FragmentActivity extends AppCompatActivity {
 
@@ -49,7 +48,7 @@ public class FragmentActivity extends AppCompatActivity {
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     switch (item.getItemId()) {
                         case R.id.action_first:
-                            loadFragment(new FirstFragment());
+                            loadFragment(new MoviesFragment());
                             break;
                         case R.id.action_second:
                             loadFragment(new SecondFragment());
