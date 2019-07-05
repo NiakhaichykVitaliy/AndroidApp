@@ -5,9 +5,10 @@ public class Movie {
     private String description;
     private String imageUrl;
 
-    public Movie(String title, String description) {
+    public Movie(String title, String description, String imageUrl) {
         this.title = title;
         this.description = description;
+        this.imageUrl = imageUrl;
     }
 
     public String getTitle() {

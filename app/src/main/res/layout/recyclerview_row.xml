@@ -5,15 +5,23 @@
     android:orientation="vertical">
 
     <TextView
+        android:layout_margin="@dimen/margin_movies_demen"
         android:id="@+id/movie_title_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorWhite"/>
+        android:textColor="@color/colorWhite" />
 
     <TextView
+        android:layout_margin="@dimen/margin_movies_demen"
         android:id="@+id/movie_description_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorWhite"/>
+        android:textColor="@color/colorWhite" />
+
+    <ImageView
+        android:layout_margin="@dimen/margin_movies_demen"
+        android:id="@+id/movie_image_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
