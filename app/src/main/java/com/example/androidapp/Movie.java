@@ -6,6 +6,8 @@ public class Movie {
     private String imageUrl;
 
     public Movie(String title, String description) {
+        this.title = title;
+        this.description = description;
     }
 
     public String getTitle() {
