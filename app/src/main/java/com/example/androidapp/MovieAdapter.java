@@ -39,7 +39,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         private TextView movieTitleTextView;
         private TextView movieDescriptionTextView;
         private ImageView movieImageView;
-        GlideImageLoader glideImageLoader = new GlideImageLoader();
+        ImageLoader glideImageLoader = new GlideImageLoader();
 
         public MovieViewHolder(@NonNull View itemView) {
             super(itemView);
