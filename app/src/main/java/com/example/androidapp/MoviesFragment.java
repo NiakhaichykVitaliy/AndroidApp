@@ -10,19 +10,19 @@ import android.view.ViewGroup;
 
 
 public class MoviesFragment extends Fragment {
-    View view;
+    TestMoviesRepositoryImpl testMoviesRepository;
     RecyclerView recyclerView;
     MovieAdapter movieAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.movies_fragment, container, false);
+        View view = inflater.inflate(R.layout.movies_fragment, container, false);
 
         recyclerView = view.findViewById(R.id.movies_recycler_view);
 
         movieAdapter = new MovieAdapter();
         recyclerView.setAdapter(movieAdapter);
-        movieAdapter.setMovies(new TestMoviesRepositoryImpl().getMovies());
+        movieAdapter.setMovies(testMoviesRepository.getMovies());
 
         return view;
     }
