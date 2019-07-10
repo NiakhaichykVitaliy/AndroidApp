@@ -8,9 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
 
-public class MoviesFragment extends Fragment {
-    TestMoviesRepositoryImpl testMoviesRepository;
+
+public class MoviesFragment extends Fragment implements MoviesRepository {
+    TestMoviesRepositoryImpl testMoviesRepository = new TestMoviesRepositoryImpl();
     RecyclerView recyclerView;
     MovieAdapter movieAdapter;
 
@@ -22,8 +24,13 @@ public class MoviesFragment extends Fragment {
 
         movieAdapter = new MovieAdapter();
         recyclerView.setAdapter(movieAdapter);
-        movieAdapter.setMovies(testMoviesRepository.getMovies());
+        movieAdapter.setMovies(getMovies());
 
         return view;
+    }
+
+    @Override
+    public List<Movie> getMovies() {
+        return testMoviesRepository.getMovies();
     }
 }
