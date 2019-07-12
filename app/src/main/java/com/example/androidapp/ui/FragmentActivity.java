@@ -1,4 +1,4 @@
-package com.example.androidapp;
+package com.example.androidapp.ui;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -10,6 +10,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+
+import com.example.androidapp.R;
 
 public class FragmentActivity extends AppCompatActivity {
 
