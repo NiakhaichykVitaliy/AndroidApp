@@ -2,20 +2,19 @@ package com.example.androidapp.ui;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.androidapp.listeners.GetMoviesListener;
+import com.example.androidapp.R;
 import com.example.androidapp.data.Movie;
 import com.example.androidapp.data.MoviesRemoteSource;
 import com.example.androidapp.data.MoviesRemoteSourceImpl;
 import com.example.androidapp.data.MoviesRepository;
-import com.example.androidapp.R;
 import com.example.androidapp.data.TestMoviesRepositoryImpl;
+import com.example.androidapp.listeners.GetMoviesListener;
 
 import java.util.List;
 
@@ -53,12 +52,28 @@ public class MoviesFragment extends Fragment implements GetMoviesListener {
 
     @Override
     public void onGetMoviesSuccess(final List<Movie> movies) {
-        movieAdapter.addMovies(movies);
-        Toast.makeText(getContext(), "" + movieAdapter.getItemCount(), Toast.LENGTH_SHORT).show();
+        if (getActivity() != null) {
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    movieAdapter.addMovies(movies);
+                    Toast.makeText(getContext(), "" + movieAdapter.getItemCount(), Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        }
+
     }
 
     @Override
-    public void onGetMoviesError(Throwable error) {
-        Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+    public void onGetMoviesError(final Throwable error) {
+        if (getActivity() != null) {
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 }
