@@ -1,6 +1,8 @@
 package com.example.androidapp.ui;
 
 import android.support.annotation.NonNull;
+import android.support.v7.recyclerview.extensions.ListAdapter;
+import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,20 +15,28 @@ import com.example.androidapp.data.ImageLoader;
 import com.example.androidapp.data.Movie;
 import com.example.androidapp.R;
 
-import java.util.List;
 
-public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
-    private List<Movie> movies;
+public class MovieAdapter extends ListAdapter<Movie, MovieAdapter.MovieViewHolder> {
 
-    public void setMovies(List<Movie> movies) {
-        this.movies = movies;
-        notifyDataSetChanged();
+    public MovieAdapter() {
+        super(DIFF_CALLBACK);
     }
 
-    public void addMovies(List<Movie> movies) {
-        this.movies.addAll(movies);
-        notifyDataSetChanged();
-    }
+    private static final DiffUtil.ItemCallback<Movie> DIFF_CALLBACK = new DiffUtil.ItemCallback<Movie>() {
+        @Override
+        public boolean areItemsTheSame(@NonNull Movie oldMovie, @NonNull Movie newMovie) {
+            return oldMovie.getName().equals(newMovie.getName());
+        }
+
+        @Override
+        public boolean areContentsTheSame(@NonNull Movie oldMovie, @NonNull Movie newMovie) {
+            return oldMovie.getName().equals(newMovie.getName()) &&
+                    oldMovie.getDescription().equals(newMovie.getDescription()) &&
+                    oldMovie.getNameEng().equals(newMovie.getNameEng()) &&
+                    oldMovie.getPremiere().equals(newMovie.getPremiere()) &&
+                    oldMovie.getImage().equals(newMovie.getImage());
+        }
+    };
 
     @NonNull
     @Override
@@ -37,12 +47,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
     @Override
     public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
-        holder.bind(movies.get(position));
-    }
-
-    @Override
-    public int getItemCount() {
-        return movies == null ? 0 : movies.size();
+        holder.bind(getItem(position));
     }
 
     class MovieViewHolder extends RecyclerView.ViewHolder {

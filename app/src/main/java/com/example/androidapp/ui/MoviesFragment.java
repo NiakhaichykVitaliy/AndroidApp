@@ -45,7 +45,7 @@ public class MoviesFragment extends Fragment implements GetMoviesListener {
 
         movieAdapter = new MovieAdapter();
         recyclerView.setAdapter(movieAdapter);
-        movieAdapter.setMovies(moviesRepository.getMovies());
+        movieAdapter.submitList(moviesRepository.getMovies());
         moviesRemoteSource.getMovies();
         return view;
     }
@@ -56,13 +56,11 @@ public class MoviesFragment extends Fragment implements GetMoviesListener {
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    movieAdapter.addMovies(movies);
+                    movieAdapter.submitList(movies);
                     Toast.makeText(getContext(), "" + movieAdapter.getItemCount(), Toast.LENGTH_SHORT).show();
                 }
             });
-
         }
-
     }
 
     @Override
