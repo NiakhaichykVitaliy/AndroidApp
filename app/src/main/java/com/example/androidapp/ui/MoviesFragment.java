@@ -26,8 +26,8 @@ public class MoviesFragment extends Fragment implements GetMoviesListener {
     MoviesRemoteSource moviesRemoteSource = new MoviesRemoteSourceImpl();
 
     @Override
-    public void onResume() {
-        super.onResume();
+    public void onStart() {
+        super.onStart();
         moviesRemoteSource.setGetMoviesListener(this);
     }
 
