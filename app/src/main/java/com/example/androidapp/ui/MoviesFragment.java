@@ -26,8 +26,8 @@ public class MoviesFragment extends Fragment implements GetMoviesListener {
     MoviesRemoteSource moviesRemoteSource = new MoviesRemoteSourceImpl();
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onResume() {
+        super.onResume();
         moviesRemoteSource.setGetMoviesListener(this);
     }
 
@@ -43,6 +43,8 @@ public class MoviesFragment extends Fragment implements GetMoviesListener {
 
         recyclerView = view.findViewById(R.id.movies_recycler_view);
 
+        moviesRemoteSource.setGetMoviesListener(this);
+
         movieAdapter = new MovieAdapter();
         recyclerView.setAdapter(movieAdapter);
         movieAdapter.setMovies(moviesRepository.getMovies());
@@ -57,12 +59,9 @@ public class MoviesFragment extends Fragment implements GetMoviesListener {
                 @Override
                 public void run() {
                     movieAdapter.addMovies(movies);
-                    Toast.makeText(getContext(), "" + movieAdapter.getItemCount(), Toast.LENGTH_SHORT).show();
                 }
             });
-
         }
-
     }
 
     @Override
