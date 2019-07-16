@@ -11,13 +11,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ViewPagerActivity"
+            android:name=".ui.ViewPagerActivity"
             android:label="@string/view_pager_activity_title"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".ui.MainActivity" />
         <activity
-            android:name=".FragmentActivity"
+            android:name=".ui.FragmentActivity"
             android:label="@string/fragments_activity_title" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

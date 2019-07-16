@@ -1,4 +1,4 @@
-package com.example.androidapp;
+package com.example.androidapp.ui;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +8,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.androidapp.data.GlideImageLoader;
+import com.example.androidapp.data.ImageLoader;
+import com.example.androidapp.data.Movie;
+import com.example.androidapp.R;
+
 import java.util.List;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
@@ -15,6 +20,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
     public void setMovies(List<Movie> movies) {
         this.movies = movies;
+        notifyDataSetChanged();
+    }
+
+    public void addMovies(List<Movie> movies) {
+        this.movies.addAll(movies);
         notifyDataSetChanged();
     }
 
@@ -36,22 +46,28 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     }
 
     class MovieViewHolder extends RecyclerView.ViewHolder {
-        private TextView movieTitleTextView;
+        private TextView movieNameTextView;
+        private TextView movieNameEngTextView;
+        private TextView moviePremiereTextView;
         private TextView movieDescriptionTextView;
         private ImageView movieImageView;
         ImageLoader glideImageLoader = new GlideImageLoader();
 
         public MovieViewHolder(@NonNull View itemView) {
             super(itemView);
-            movieTitleTextView = itemView.findViewById(R.id.movie_title_view);
+            movieNameTextView = itemView.findViewById(R.id.movie_name_view);
+            movieNameEngTextView = itemView.findViewById(R.id.movie_name_eng_view);
+            moviePremiereTextView = itemView.findViewById(R.id.movie_premiere_view);
             movieDescriptionTextView = itemView.findViewById(R.id.movie_description_view);
             movieImageView = itemView.findViewById(R.id.movie_image_view);
         }
 
         public void bind(Movie text) {
-            movieTitleTextView.setText(text.getTitle());
+            movieNameTextView.setText(text.getName());
+            movieNameEngTextView.setText(text.getNameEng());
+            moviePremiereTextView.setText(text.getPremiere());
             movieDescriptionTextView.setText(text.getDescription());
-            glideImageLoader.loadImage(text.getImageUrl(),movieImageView);
+            glideImageLoader.loadImage(text.getImage(), movieImageView);
         }
     }
 }

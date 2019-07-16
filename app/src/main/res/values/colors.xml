@@ -6,4 +6,7 @@
     <color name="colorGold">#d2b100</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorOrange">#d4900f</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorSaddleBrown">#8b4513</color>
+    <color name="colorNavy">#191970</color>
 </resources>

@@ -1,27 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
-
-    <TextView
-        android:layout_margin="@dimen/movie_margin"
-        android:id="@+id/movie_title_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorWhite" />
-
-    <TextView
-        android:layout_margin="@dimen/movie_margin"
-        android:id="@+id/movie_description_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorWhite" />
+    android:orientation="horizontal">
 
     <ImageView
-        android:layout_margin="@dimen/movie_margin"
         android:id="@+id/movie_image_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/movie_margin"
+        android:layout_weight="1"
+        tools:ignore="ContentDescription" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/movie_name_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/movie_margin"
+            android:textColor="@color/colorBlack" />
+
+        <TextView
+            android:id="@+id/movie_name_eng_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/movie_margin"
+            android:textColor="@color/colorNavy" />
+
+        <TextView
+            android:id="@+id/movie_premiere_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/movie_margin"
+            android:textColor="@color/colorSaddleBrown" />
+
+        <TextView
+            android:id="@+id/movie_description_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/movie_margin"
+            android:textColor="@color/colorBlack" />
+
+    </LinearLayout>
 
 </LinearLayout>
