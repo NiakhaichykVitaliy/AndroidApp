@@ -18,7 +18,7 @@ import com.example.androidapp.data.Movie;
 
 public class MovieAdapter extends ListAdapter<Movie, MovieAdapter.MovieViewHolder> {
 
-    protected MovieAdapter(@NonNull DiffUtil.ItemCallback<Movie> diffCallback) {
+    public MovieAdapter(@NonNull DiffUtil.ItemCallback<Movie> diffCallback) {
         super(diffCallback);
     }
 
