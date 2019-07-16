@@ -1,6 +1,8 @@
 package com.example.androidapp.ui;
 
 import android.support.annotation.NonNull;
+import android.support.v7.recyclerview.extensions.ListAdapter;
+import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,24 +10,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.androidapp.R;
 import com.example.androidapp.data.GlideImageLoader;
 import com.example.androidapp.data.ImageLoader;
 import com.example.androidapp.data.Movie;
-import com.example.androidapp.R;
 
-import java.util.List;
 
-public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
-    private List<Movie> movies;
+public class MovieAdapter extends ListAdapter<Movie, MovieAdapter.MovieViewHolder> {
 
-    public void setMovies(List<Movie> movies) {
-        this.movies = movies;
-        notifyDataSetChanged();
-    }
-
-    public void addMovies(List<Movie> movies) {
-        this.movies.addAll(movies);
-        notifyDataSetChanged();
+    public MovieAdapter(@NonNull DiffUtil.ItemCallback<Movie> diffCallback) {
+        super(diffCallback);
     }
 
     @NonNull
@@ -37,12 +31,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
     @Override
     public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
-        holder.bind(movies.get(position));
-    }
-
-    @Override
-    public int getItemCount() {
-        return movies == null ? 0 : movies.size();
+        holder.bind(getItem(position));
     }
 
     class MovieViewHolder extends RecyclerView.ViewHolder {
