@@ -2,6 +2,7 @@ package com.example.androidapp.ui;
 
 import android.support.annotation.NonNull;
 import android.support.v7.recyclerview.extensions.ListAdapter;
+import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,13 +15,11 @@ import com.example.androidapp.data.GlideImageLoader;
 import com.example.androidapp.data.ImageLoader;
 import com.example.androidapp.data.Movie;
 
-import static com.example.androidapp.data.MovieDiffUtilCallback.DIFF_CALLBACK;
-
 
 public class MovieAdapter extends ListAdapter<Movie, MovieAdapter.MovieViewHolder> {
 
-    public MovieAdapter() {
-        super(DIFF_CALLBACK);
+    protected MovieAdapter(@NonNull DiffUtil.ItemCallback<Movie> diffCallback) {
+        super(diffCallback);
     }
 
     @NonNull

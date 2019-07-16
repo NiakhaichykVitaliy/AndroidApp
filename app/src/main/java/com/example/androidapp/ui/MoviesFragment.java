@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.example.androidapp.R;
 import com.example.androidapp.data.Movie;
+import com.example.androidapp.data.MovieDiffUtilCallback;
 import com.example.androidapp.data.MoviesRemoteSource;
 import com.example.androidapp.data.MoviesRemoteSourceImpl;
 import com.example.androidapp.data.MoviesRepository;
@@ -43,9 +44,11 @@ public class MoviesFragment extends Fragment implements GetMoviesListener {
 
         recyclerView = view.findViewById(R.id.movies_recycler_view);
 
-        movieAdapter = new MovieAdapter();
+        moviesRemoteSource.setGetMoviesListener(this);
+
+        movieAdapter = new MovieAdapter(new MovieDiffUtilCallback());
         recyclerView.setAdapter(movieAdapter);
-        movieAdapter.setMovies(moviesRepository.getMovies());
+        movieAdapter.submitList(moviesRepository.getMovies());
         moviesRemoteSource.getMovies();
         return view;
     }
@@ -56,13 +59,10 @@ public class MoviesFragment extends Fragment implements GetMoviesListener {
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    movieAdapter.addMovies(movies);
-                    Toast.makeText(getContext(), "" + movieAdapter.getItemCount(), Toast.LENGTH_SHORT).show();
+                    movieAdapter.submitList(movies);
                 }
             });
-
         }
-
     }
 
     @Override
