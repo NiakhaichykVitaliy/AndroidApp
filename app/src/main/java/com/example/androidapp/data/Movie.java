@@ -1,8 +1,5 @@
 package com.example.androidapp.data;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
 public class Movie {
     public Movie(String name, String description, String image, String nameEng, String premiere) {
         this.image = image;
@@ -12,20 +9,10 @@ public class Movie {
         this.description = description;
     }
 
-    @SerializedName("image")
-    @Expose
     private String image;
-    @SerializedName("name")
-    @Expose
     private String name;
-    @SerializedName("name_eng")
-    @Expose
     private String nameEng;
-    @SerializedName("premiere")
-    @Expose
     private String premiere;
-    @SerializedName("description")
-    @Expose
     private String description;
 
     public String getImage() {
@@ -67,5 +54,4 @@ public class Movie {
     public void setDescription(String description) {
         this.description = description;
     }
-
 }
