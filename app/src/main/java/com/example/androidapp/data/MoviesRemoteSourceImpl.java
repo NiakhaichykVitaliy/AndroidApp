@@ -19,15 +19,15 @@ import static com.google.gson.FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES;
 public class MoviesRemoteSourceImpl implements MoviesRemoteSource {
     private GetMoviesListener getMoviesListener;
     private MoviesApi moviesApi;
-    private static final int timeoutSeconds = 30;
+    private static final int TIMEOUT_SECONDS = 30;
 
 
     public MoviesRemoteSourceImpl() {
         OkHttpClient.Builder okhttpBuilder = new OkHttpClient.Builder()
-                .writeTimeout(timeoutSeconds, TimeUnit.SECONDS)
-                .readTimeout(timeoutSeconds, TimeUnit.SECONDS)
-                .connectTimeout(timeoutSeconds, TimeUnit.SECONDS)
-                .callTimeout(timeoutSeconds, TimeUnit.SECONDS);
+                .writeTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS)
+                .readTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS)
+                .connectTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS)
+                .callTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS);
 
         Gson gson = new GsonBuilder()
                 .setFieldNamingPolicy(LOWER_CASE_WITH_UNDERSCORES)
