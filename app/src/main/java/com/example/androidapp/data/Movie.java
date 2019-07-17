@@ -1,7 +1,5 @@
 package com.example.androidapp.data;
 
-import com.google.gson.annotations.Expose;
-
 public class Movie {
     public Movie(String name, String description, String image, String nameEng, String premiere) {
         this.image = image;
@@ -11,15 +9,10 @@ public class Movie {
         this.description = description;
     }
 
-    @Expose
     private String image;
-    @Expose
     private String name;
-    @Expose
     private String nameEng;
-    @Expose
     private String premiere;
-    @Expose
     private String description;
 
     public String getImage() {
@@ -61,5 +54,4 @@ public class Movie {
     public void setDescription(String description) {
         this.description = description;
     }
-
 }

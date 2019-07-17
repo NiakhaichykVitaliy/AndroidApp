@@ -19,20 +19,24 @@ import static com.google.gson.FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES;
 public class MoviesRemoteSourceImpl implements MoviesRemoteSource {
     private GetMoviesListener getMoviesListener;
     private MoviesApi moviesApi;
+    private int timeoutSeconds = 30;
 
 
     public MoviesRemoteSourceImpl() {
         OkHttpClient.Builder okhttpBuilder = new OkHttpClient.Builder()
-                .callTimeout(30, TimeUnit.SECONDS);
+                .writeTimeout(timeoutSeconds, TimeUnit.SECONDS)
+                .readTimeout(timeoutSeconds, TimeUnit.SECONDS)
+                .connectTimeout(timeoutSeconds, TimeUnit.SECONDS)
+                .callTimeout(timeoutSeconds, TimeUnit.SECONDS);
 
-        Gson gsonFieldNamingPolicy = new GsonBuilder()
+        Gson gson = new GsonBuilder()
                 .setFieldNamingPolicy(LOWER_CASE_WITH_UNDERSCORES)
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .client(okhttpBuilder.build())
-                .addConverterFactory(GsonConverterFactory.create(gsonFieldNamingPolicy))
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         moviesApi = retrofit.create(MoviesApi.class);
     }
@@ -43,7 +47,7 @@ public class MoviesRemoteSourceImpl implements MoviesRemoteSource {
 
             @Override
             public void onResponse(Call<MoviesList> call, Response<MoviesList> response) {
-                if (response.body() != null) {
+                if (response.body() != null && getMoviesListener != null) {
                     getMoviesListener.onGetMoviesSuccess(response.body().getMovieList());
                 }
             }
