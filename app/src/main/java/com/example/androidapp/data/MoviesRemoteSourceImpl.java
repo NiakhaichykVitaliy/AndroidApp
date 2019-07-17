@@ -19,7 +19,7 @@ import static com.google.gson.FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES;
 public class MoviesRemoteSourceImpl implements MoviesRemoteSource {
     private GetMoviesListener getMoviesListener;
     private MoviesApi moviesApi;
-    private int timeoutSeconds = 30;
+    private final int timeoutSeconds = 30;
 
 
     public MoviesRemoteSourceImpl() {
@@ -54,7 +54,9 @@ public class MoviesRemoteSourceImpl implements MoviesRemoteSource {
 
             @Override
             public void onFailure(Call<MoviesList> call, Throwable t) {
-                getMoviesListener.onGetMoviesError(t);
+                if (getMoviesListener != null) {
+                    getMoviesListener.onGetMoviesError(t);
+                }
             }
         });
     }
