@@ -19,7 +19,7 @@ import static com.google.gson.FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES;
 public class MoviesRemoteSourceImpl implements MoviesRemoteSource {
     private GetMoviesListener getMoviesListener;
     private MoviesApi moviesApi;
-    private final int timeoutSeconds = 30;
+    private static final int timeoutSeconds = 30;
 
 
     public MoviesRemoteSourceImpl() {
