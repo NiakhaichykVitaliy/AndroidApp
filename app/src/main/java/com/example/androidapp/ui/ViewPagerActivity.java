@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.androidapp.R;
-import com.example.androidapp.services.ActivityService;
+import com.example.androidapp.services.TimerService;
 
 public class ViewPagerActivity extends AppCompatActivity {
 
@@ -24,10 +24,17 @@ public class ViewPagerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_pager);
         startService(
-                new Intent(this, ActivityService.class));
+                new Intent(this, TimerService.class));
 
         pager = findViewById(R.id.view_pager);
         pagerAdapter = new PagerAdapter(getSupportFragmentManager());
         pager.setAdapter(pagerAdapter);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopService(
+                new Intent(this, TimerService.class));
     }
 }

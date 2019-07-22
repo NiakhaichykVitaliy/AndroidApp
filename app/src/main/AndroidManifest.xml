@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <service
-            android:name=".services.ActivityService"
+            android:name=".services.TimerService"
             android:enabled="true" />
 
         <activity
