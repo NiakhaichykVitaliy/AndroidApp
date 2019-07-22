@@ -17,9 +17,9 @@ import static com.example.androidapp.data.MoviesApi.BASE_URL;
 import static com.google.gson.FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES;
 
 public class MoviesRemoteSourceImpl implements MoviesRemoteSource {
+    private static final int TIMEOUT_SECONDS = 30;
     private GetMoviesListener getMoviesListener;
     private MoviesApi moviesApi;
-    private static final int TIMEOUT_SECONDS = 30;
 
 
     public MoviesRemoteSourceImpl() {
