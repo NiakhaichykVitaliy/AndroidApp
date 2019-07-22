@@ -10,10 +10,11 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class TimerService extends Service {
-    Timer timer = new Timer();
-    TimerTask timerTask = new TimerRunningTask();
     private static final int DELAY = 0;
     private static final int PERIOD = 3000;
+    private Timer timer = new Timer();
+    private TimerTask timerTask = new TimerRunningTask();
+
 
     @Override
     public void onCreate() {
@@ -29,7 +30,6 @@ public class TimerService extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
-        // TODO: Return the communication channel to the service.
         throw new UnsupportedOperationException("Not yet implemented");
     }
 }

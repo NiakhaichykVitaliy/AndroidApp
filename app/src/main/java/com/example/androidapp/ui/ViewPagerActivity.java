@@ -23,8 +23,7 @@ public class ViewPagerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_pager);
-        startService(
-                new Intent(this, TimerService.class));
+        startService(new Intent(this, TimerService.class));
 
         pager = findViewById(R.id.view_pager);
         pagerAdapter = new PagerAdapter(getSupportFragmentManager());
@@ -34,7 +33,6 @@ public class ViewPagerActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        stopService(
-                new Intent(this, TimerService.class));
+        stopService(new Intent(this, TimerService.class));
     }
 }
