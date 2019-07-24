@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity
+            android:name=".ui.MovieItemActivity"
+            android:label="@string/movie_activity_title" />
         <activity
             android:name=".ui.ViewPagerActivity"
             android:label="@string/view_pager_activity_title"
@@ -30,7 +32,6 @@
         <service
             android:name=".services.TimerService"
             android:enabled="true" />
-
     </application>
 
 </manifest>

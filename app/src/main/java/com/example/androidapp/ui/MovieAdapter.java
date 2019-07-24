@@ -1,5 +1,6 @@
 package com.example.androidapp.ui;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.recyclerview.extensions.ListAdapter;
 import android.support.v7.util.DiffUtil;
@@ -30,7 +31,7 @@ public class MovieAdapter extends ListAdapter<Movie, MovieAdapter.MovieViewHolde
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MovieViewHolder holder, final int position) {
         holder.bind(getItem(position));
     }
 
@@ -49,6 +50,20 @@ public class MovieAdapter extends ListAdapter<Movie, MovieAdapter.MovieViewHolde
             moviePremiereTextView = itemView.findViewById(R.id.movie_premiere_view);
             movieDescriptionTextView = itemView.findViewById(R.id.movie_description_view);
             movieImageView = itemView.findViewById(R.id.movie_image_view);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        Movie clickedDataItem = getItem(position);
+                        Intent intent = new Intent(view.getContext(), MovieItemActivity.class);
+                        intent.putExtra("movies", clickedDataItem);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        view.getContext().startActivity(intent);
+                    }
+                }
+            });
         }
 
         public void bind(Movie text) {
