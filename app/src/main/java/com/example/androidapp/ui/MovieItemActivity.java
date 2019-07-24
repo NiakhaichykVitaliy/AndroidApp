@@ -1,8 +1,10 @@
 package com.example.androidapp.ui;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,10 +20,10 @@ public class MovieItemActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.movie_item_activity);
 
-/*        ActionBar actionBar = getSupportActionBar();
+        ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-        }*/
+        }
 
         ImageLoader glideImageLoader = new GlideImageLoader();
 
@@ -48,5 +50,15 @@ public class MovieItemActivity extends AppCompatActivity {
 
         TextView movieDescriptionTextView = findViewById(R.id.movie_item_description_view);
         movieDescriptionTextView.setText(description);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
