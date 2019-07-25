@@ -13,12 +13,12 @@ import com.example.androidapp.data.GlideImageLoader;
 import com.example.androidapp.data.ImageLoader;
 import com.example.androidapp.data.Movie;
 
-public class MovieItemActivity extends AppCompatActivity {
+public class MovieActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.movie_item_activity);
+        setContentView(R.layout.movie_activity);
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -45,11 +45,17 @@ public class MovieItemActivity extends AppCompatActivity {
         TextView movieNameEngTextView = findViewById(R.id.movie_item_name_eng_view);
         movieNameEngTextView.setText(nameEng);
 
-        TextView moviePremiereTextView = findViewById(R.id.movie_premiere);
+        TextView moviePremiereTextView = findViewById(R.id.movie_item_premiere_view);
         moviePremiereTextView.setText(premiere);
 
         TextView movieDescriptionTextView = findViewById(R.id.movie_item_description_view);
         movieDescriptionTextView.setText(description);
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
     @Override

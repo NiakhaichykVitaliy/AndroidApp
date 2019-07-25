@@ -57,7 +57,7 @@ public class MovieAdapter extends ListAdapter<Movie, MovieAdapter.MovieViewHolde
                     int position = getAdapterPosition();
                     if (position != RecyclerView.NO_POSITION) {
                         Movie clickedDataItem = getItem(position);
-                        Intent intent = new Intent(view.getContext(), MovieItemActivity.class);
+                        Intent intent = new Intent(view.getContext(), MovieActivity.class);
                         intent.putExtra("movies", clickedDataItem);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         view.getContext().startActivity(intent);
