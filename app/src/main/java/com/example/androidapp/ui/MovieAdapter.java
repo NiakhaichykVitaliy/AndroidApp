@@ -43,7 +43,7 @@ public class MovieAdapter extends ListAdapter<Movie, MovieAdapter.MovieViewHolde
         private ImageView movieImageView;
         ImageLoader glideImageLoader = new GlideImageLoader();
 
-        public MovieViewHolder(@NonNull View itemView) {
+        public MovieViewHolder(@NonNull final View itemView) {
             super(itemView);
             movieNameTextView = itemView.findViewById(R.id.movie_name_view);
             movieNameEngTextView = itemView.findViewById(R.id.movie_name_eng_view);
