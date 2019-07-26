@@ -13,6 +13,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.MovieActivity"
+            android:theme="@style/AppTheme.NoActionBar"
             android:label="@string/movie_activity_title" />
         <activity
             android:name=".ui.ViewPagerActivity"
