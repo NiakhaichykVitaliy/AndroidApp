@@ -21,8 +21,8 @@
             android:fitsSystemWindows="true"
             app:collapsedTitleTextAppearance="@android:color/black"
             app:contentScrim="@color/colorPrimary"
-            app:expandedTitleMarginEnd="64dp"
-            app:expandedTitleMarginStart="48dp"
+            app:expandedTitleMarginEnd="@dimen/movie_margin"
+            app:expandedTitleMarginStart="@dimen/movie_margin"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
