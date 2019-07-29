@@ -1,7 +1,9 @@
 package com.example.androidapp.ui;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.recyclerview.extensions.ListAdapter;
 import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
@@ -52,15 +54,20 @@ public class MovieAdapter extends ListAdapter<Movie, MovieAdapter.MovieViewHolde
             movieImageView = itemView.findViewById(R.id.movie_image_view);
 
             itemView.setOnClickListener(new View.OnClickListener() {
+                private static final String MOVIE_ITEM_IMAGE_ANIMATION = "movie_item_image_animation";
+
                 @Override
                 public void onClick(View view) {
                     int position = getAdapterPosition();
                     if (position != RecyclerView.NO_POSITION) {
                         Movie clickedDataItem = getItem(position);
+                        ActivityOptionsCompat options;
+                        options = ActivityOptionsCompat.makeSceneTransitionAnimation
+                                ((Activity) view.getContext(), movieImageView, MOVIE_ITEM_IMAGE_ANIMATION);
                         Intent intent = new Intent(view.getContext(), MovieActivity.class);
                         intent.putExtra("movies", clickedDataItem);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        view.getContext().startActivity(intent);
+                        view.getContext().startActivity(intent, options.toBundle());
                     }
                 }
             });
