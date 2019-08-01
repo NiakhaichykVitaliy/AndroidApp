@@ -1,11 +1,15 @@
 package com.example.androidapp.ui;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.androidapp.R;
@@ -21,10 +25,12 @@ import java.util.List;
 
 
 public class MoviesFragment extends Fragment implements GetMoviesListener {
-    MoviesRepository moviesRepository = new TestMoviesRepositoryImpl();
-    RecyclerView recyclerView;
-    MovieAdapter movieAdapter;
-    MoviesRemoteSource moviesRemoteSource = new MoviesRemoteSourceImpl();
+
+    private MoviesRepository moviesRepository = new TestMoviesRepositoryImpl();
+    private RecyclerView recyclerView;
+    private MovieAdapter movieAdapter;
+    private MoviesRemoteSource moviesRemoteSource = new MoviesRemoteSourceImpl();
+    private ImageView movieImageView;
 
     @Override
     public void onStart() {
@@ -55,11 +61,26 @@ public class MoviesFragment extends Fragment implements GetMoviesListener {
 
     @Override
     public void onGetMoviesSuccess(final List<Movie> movies) {
+        final String MOVIE_ITEM_IMAGE_ANIMATION = "movie_item_image_animation";
         if (getActivity() != null) {
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     movieAdapter.submitList(movies);
+                    movieAdapter.setOnItemClickListener(new MovieAdapter.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(int position) {
+                            Movie clickedDataItem = movies.get(position);
+                            movieImageView = recyclerView.findViewById(R.id.movie_image_view);
+                            ActivityOptionsCompat option;
+                            option = ActivityOptionsCompat.makeSceneTransitionAnimation
+                                    (getActivity(), movieImageView, MOVIE_ITEM_IMAGE_ANIMATION);
+                            Intent intent = new Intent(getActivity(), MovieActivity.class);
+                            intent.putExtra("movies", clickedDataItem);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent, option.toBundle());
+                        }
+                    });
                 }
             });
         }
