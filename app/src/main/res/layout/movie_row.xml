@@ -11,6 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/movie_margin"
         android:layout_weight="1"
+        android:scaleType="centerCrop"
+        android:transitionName="movie_item_image_animation"
         tools:ignore="ContentDescription" />
 
     <LinearLayout

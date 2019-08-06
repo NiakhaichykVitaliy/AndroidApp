@@ -1,11 +1,14 @@
 package com.example.androidapp.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.androidapp.R;
@@ -21,10 +24,13 @@ import java.util.List;
 
 
 public class MoviesFragment extends Fragment implements GetMoviesListener {
-    MoviesRepository moviesRepository = new TestMoviesRepositoryImpl();
-    RecyclerView recyclerView;
-    MovieAdapter movieAdapter;
-    MoviesRemoteSource moviesRemoteSource = new MoviesRemoteSourceImpl();
+    private final String MOVIE_ITEM_IMAGE_ANIMATION = "movie_item_image_animation";
+    private ImageView movieImageView;
+
+    private MoviesRepository moviesRepository = new TestMoviesRepositoryImpl();
+    private RecyclerView recyclerView;
+    private MovieAdapter movieAdapter;
+    private MoviesRemoteSource moviesRemoteSource = new MoviesRemoteSourceImpl();
 
     @Override
     public void onStart() {
@@ -50,6 +56,20 @@ public class MoviesFragment extends Fragment implements GetMoviesListener {
         recyclerView.setAdapter(movieAdapter);
         movieAdapter.submitList(moviesRepository.getMovies());
         moviesRemoteSource.getMovies();
+        movieAdapter.setOnItemClickListener(new MovieAdapter.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(Movie movie) {
+                ActivityOptionsCompat option;
+                movieImageView = recyclerView.findViewById(R.id.movie_image_view);
+                option = ActivityOptionsCompat.makeSceneTransitionAnimation
+                        (getActivity(), movieImageView, MOVIE_ITEM_IMAGE_ANIMATION);
+                Intent intent = new Intent(getActivity(), MovieActivity.class);
+                intent.putExtra("movies", movie);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent, option.toBundle());
+            }
+        });
         return view;
     }
 

@@ -14,5 +14,6 @@
 
     <string name="view_pager_activity_title">View Pager Activity</string>
     <string name="fragments_activity_title">Fragments Activity</string>
+    <string name="movie_activity_title">Movie Activity</string>
 
 </resources>

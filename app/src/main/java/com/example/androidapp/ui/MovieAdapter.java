@@ -17,7 +17,6 @@ import com.example.androidapp.data.Movie;
 
 
 public class MovieAdapter extends ListAdapter<Movie, MovieAdapter.MovieViewHolder> {
-
     public MovieAdapter(@NonNull DiffUtil.ItemCallback<Movie> diffCallback) {
         super(diffCallback);
     }
@@ -26,12 +25,22 @@ public class MovieAdapter extends ListAdapter<Movie, MovieAdapter.MovieViewHolde
     @Override
     public MovieViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_row, parent, false);
-        return new MovieViewHolder(view);
+        return new MovieViewHolder(view, listener);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MovieViewHolder holder, final int position) {
         holder.bind(getItem(position));
+    }
+
+    private OnItemClickListener listener;
+
+    public interface OnItemClickListener {
+        void onItemClick(Movie movie);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
     }
 
     class MovieViewHolder extends RecyclerView.ViewHolder {
@@ -42,13 +51,24 @@ public class MovieAdapter extends ListAdapter<Movie, MovieAdapter.MovieViewHolde
         private ImageView movieImageView;
         ImageLoader glideImageLoader = new GlideImageLoader();
 
-        public MovieViewHolder(@NonNull View itemView) {
+        public MovieViewHolder(@NonNull final View itemView, final OnItemClickListener listener) {
             super(itemView);
             movieNameTextView = itemView.findViewById(R.id.movie_name_view);
             movieNameEngTextView = itemView.findViewById(R.id.movie_name_eng_view);
             moviePremiereTextView = itemView.findViewById(R.id.movie_premiere_view);
             movieDescriptionTextView = itemView.findViewById(R.id.movie_description_view);
             movieImageView = itemView.findViewById(R.id.movie_image_view);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+                    if (listener != null) {
+                        Movie movie = getItem(getAdapterPosition());
+                        listener.onItemClick(movie);
+                    }
+                }
+            });
         }
 
         public void bind(Movie text) {
