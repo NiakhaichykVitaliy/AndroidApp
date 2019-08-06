@@ -25,12 +25,12 @@ public class MovieActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.movie_activity);
 
-        backArrowButton();
-        getMovie();
+        initToolbarBackArrowButton();
+        createMovieScreen();
 
     }
 
-    public void backArrowButton() {
+    public void initToolbarBackArrowButton() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
@@ -38,7 +38,7 @@ public class MovieActivity extends BaseActivity {
         }
     }
 
-    public void getMovie() {
+    public void createMovieScreen() {
         ImageLoader glideImageLoader = new GlideImageLoader();
 
         Intent intent = getIntent();

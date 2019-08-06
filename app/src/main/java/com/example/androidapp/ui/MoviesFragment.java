@@ -1,6 +1,5 @@
 package com.example.androidapp.ui;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -25,12 +24,13 @@ import java.util.List;
 
 
 public class MoviesFragment extends Fragment implements GetMoviesListener {
+    private final String MOVIE_ITEM_IMAGE_ANIMATION = "movie_item_image_animation";
+    private ImageView movieImageView;
 
     private MoviesRepository moviesRepository = new TestMoviesRepositoryImpl();
     private RecyclerView recyclerView;
     private MovieAdapter movieAdapter;
     private MoviesRemoteSource moviesRemoteSource = new MoviesRemoteSourceImpl();
-    private ImageView movieImageView;
 
     @Override
     public void onStart() {
@@ -56,31 +56,30 @@ public class MoviesFragment extends Fragment implements GetMoviesListener {
         recyclerView.setAdapter(movieAdapter);
         movieAdapter.submitList(moviesRepository.getMovies());
         moviesRemoteSource.getMovies();
+        movieAdapter.setOnItemClickListener(new MovieAdapter.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(Movie movie) {
+                ActivityOptionsCompat option;
+                movieImageView = recyclerView.findViewById(R.id.movie_image_view);
+                option = ActivityOptionsCompat.makeSceneTransitionAnimation
+                        (getActivity(), movieImageView, MOVIE_ITEM_IMAGE_ANIMATION);
+                Intent intent = new Intent(getActivity(), MovieActivity.class);
+                intent.putExtra("movies", movie);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent, option.toBundle());
+            }
+        });
         return view;
     }
 
     @Override
     public void onGetMoviesSuccess(final List<Movie> movies) {
-        final String MOVIE_ITEM_IMAGE_ANIMATION = "movie_item_image_animation";
         if (getActivity() != null) {
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     movieAdapter.submitList(movies);
-                    movieAdapter.setOnItemClickListener(new MovieAdapter.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(int position) {
-                            Movie clickedDataItem = movies.get(position);
-                            movieImageView = recyclerView.findViewById(R.id.movie_image_view);
-                            ActivityOptionsCompat option;
-                            option = ActivityOptionsCompat.makeSceneTransitionAnimation
-                                    (getActivity(), movieImageView, MOVIE_ITEM_IMAGE_ANIMATION);
-                            Intent intent = new Intent(getActivity(), MovieActivity.class);
-                            intent.putExtra("movies", clickedDataItem);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent, option.toBundle());
-                        }
-                    });
                 }
             });
         }
